@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  Usuario: <strong><%= current_user.email %></strong>.
+  <%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <table>
+  <thead>
+    <tr>
+      <th>Lista en JSON</th>
+      <th>Crear</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+      <p><td><%= link_to 'Usuarios', usuarios_path %></td></p>
+      <p><td><%= link_to 'Agregar', new_usuario_path %></td></p>
+      </tr>
+      <tr>
+      <p><td><%= link_to 'Autores', autors_path %></td></p>
+      <p><td><%= link_to 'Agregar', new_autor_path %></td></p>
+      </tr>
+      <tr>
+      <p><td><%= link_to 'Libros', books_path %></td></p>
+      <p><td><%= link_to 'Agregar', new_book_path %></td></p>
+      </tr>
+  </tbody>
+</table>
+
+<% else %>
+  <%= link_to "Registrase", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+
+</p>
+  </body>
+</html>
+
+
+
